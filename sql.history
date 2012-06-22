@@ -1,0 +1,9 @@
+CREATE DATABASE `ex11`;
+
+CREATE TABLE `posts` (
+  `pk` int(12) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `pub_date` datetime NOT NULL,
+  `author` varchar(200) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `text` varchar(600) NOT NULL
+) COMMENT='' ENGINE='InnoDB';
