@@ -143,7 +143,7 @@ else
 
         $formusername = $_POST['postername'];
         $formtitle    = $_POST['posttitle'];
-        $formtext     = $_POST['posttext'];
+        $formtext     = strip_tags($_POST['posttext'],'<p><br><a><pre><em><b>');
         $formdate     = date('Y-m-d H:i:s');
  
         $sqlinsert = 'INSERT INTO posts (pubdate, author, title, text)
