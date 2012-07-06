@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
@@ -37,9 +40,7 @@ $posts .= "<article><header><h4>$post_title</h4>
             <div class="article"><p>'.$post_text.'</p></div></article>';
 }
 
-
 $posts .= "</div>";
-//$posts = "<div>This will be the post area</div>";
 
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
@@ -132,14 +133,6 @@ else
     }
     else
     {
-
-       /* function dbConnect()
-        {
-        $connection = new mysqli('localhost', 'user', 'password', 'ex11') or die ('Cannot connect to database');
-        return $connection;
-        }*/
-       
-        //Sanitize the inputs!
 
         $formusername = $_POST['postername'];
         $formtitle    = $_POST['posttitle'];
