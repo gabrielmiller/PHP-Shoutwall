@@ -1,22 +1,6 @@
 <?php
 
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
-<head>
-    <link rel="icon" href="favicon.ico">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>A Super Duper PHP Shoutwall</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script> -->    
-</head>
-<body>
-<div id="header">
-    <h1>Shoutwall</h1>
-</div>
-<div id="wrapper">
-<?php
+$page = "";  //Every added line is concatenated to page
 
 function dbConnect()
 {
@@ -44,7 +28,8 @@ $posts .= "</div>";
 
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
-    echo '<form id="addpost" action="" method=POST>
+    //echo '<form id="addpost" action="" method=POST>
+    $page .= '<form id="addpost" action="" method=POST>
     <p><label>Name:</label><input type="text" name="postername" id="postername"></p>
     <p><label>Title:</label><input type="text" name="posttitle" id="posttitle"></p>
     <p><label>Text:</label><textarea name="posttext" id="posttext"></textarea></p>
@@ -55,7 +40,8 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
     </form>
     <br>';
 
-    echo $posts;
+    //echo $posts;
+   $page .= $posts;
 
 }
 
@@ -119,17 +105,21 @@ else
     {
         if(count($errors)==1)
         {
-            echo 'It looks like you had an error:<br><ul>';
+            //echo 'It looks like you had an error:<br><ul>';
+            $page .= 'It looks like you had an error:<br><ul>';
         }
         elseif(count($errors)>1)
         {
-            echo 'It looks like you had some errors:<br><ul>';
+            //echo 'It looks like you had some errors:<br><ul>';
+            $page .= 'It looks like you had some errors:<br><ul>';
         }
         foreach($errors as $key => $value)
         {
-            echo '<li>'.$value.'</li>';
+            //echo '<li>'.$value.'</li>';
+            $page .= '<li>'.$value.'</li>';
         }
-    echo '</ul>';
+    //echo '</ul>';
+    $page .= '</ul>';
     }
     else
     {
@@ -150,26 +140,45 @@ else
         if ($stmt->affected_rows == 1)
         {
             header('Location: index.php');
+            exit;
         }
         else
         {
-            echo '<h2>There was a problem with the database!</h2><br><h3>Try again later or contact the <a href="gmiller2007@gmail.com">administrator</a></h3>';
         }
-        echo '<br>';
+            //echo '<h2>There was a problem with the database!</h2><br><h3>Try again later or contact the <a href="gmiller2007@gmail.com">administrator</a></h3>';
+            $page .= '<h2>There was a problem with the database!</h2><br><h3>Try again later or contact the <a href="gmiller2007@gmail.com">administrator</a></h3>';
+        //echo '<br>';
         //echo print_r($connection);
-        echo '<br>';
+        //echo '<br>';
         //echo $formdate;
-        echo '<br>';
+        //echo '<br>';
         //echo var_dump($connection);
-        echo '<br>';
-        echo '<br>';
-        echo $posts;
+        //echo '<br>';
+        //echo '<br>';
+        //echo $posts;
+        $page .= $posts;
     }
 }
 
+?>
 
-
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+<head>
+    <link rel="icon" href="favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>A Super Duper PHP Shoutwall</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script> -->    
+</head>
+<body>
+<div id="header">
+    <h1>Shoutwall</h1>
+</div>
+<div id="wrapper">
+<?php
+print $page;
 ?>
 </div>
 <div id="footer"><a href="http://www.cheddarcode.com/g">2012 L Gabriel Miller</a></div>
